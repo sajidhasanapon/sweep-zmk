@@ -16,10 +16,6 @@
 #define AS(keycode) &as LS(keycode) keycode
 
 / {
-    chosen {
-        zmk,physical-layout = &foostan_corne_5col_layout;
-    };
-
     behaviors {
         as: auto_shift {
             compatible = "zmk,behavior-hold-tap";
@@ -79,7 +75,7 @@
         &kp X      &kp Q      &kp W      &kp M      &kp Z                    &kp K     &kp P      &kp COMMA  &kp DOT     &kp FSLH
     //╰──────────┴──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┴──────────┴──────────╯
     //                                    MO(NAV)       LSHIFT             SPACE         MO(SYM)          
-                                          &mo NAV    &kp LSHIFT           &kp SPACE      &mo SYM       
+                                          &mo NAV    &sk LSHIFT           &kp SPACE      &mo SYM       
     //                                 ╰──────────┴──────────╯             ╰──────────┴──────────╯
         >;
     };
