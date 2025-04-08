@@ -1,0 +1,144 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+#define BASE 0
+#define SYM  1
+#define NAV  2
+#define SETT 3
+
+#define AS(keycode) &as LS(keycode) keycode
+
+/ {
+    chosen {
+        zmk,physical-layout = &foostan_corne_5col_layout;
+    };
+
+    behaviors {
+        as: auto_shift {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping_term_ms = <200>;
+            quick_tap_ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        ht: hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    macros {
+        home: home {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp A>
+                , <&macro_release &kp LCTRL>
+                ;
+        };
+        end: end {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp E>
+                , <&macro_release &kp LCTRL>
+                ;
+        };
+    };
+
+    keymap {
+            compatible = "zmk,keymap";
+
+
+    default_layer {
+        display-name = "Base";
+        bindings = <
+    //╭──────────┬──────────┬──────────┬──────────┬──────────╮             ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+    //│    B     │    L     │    C     │    D     │    V     │             │    J     │    F     │    O     │    U     │   BSPC   │
+         &kp B      &kp L      &kp C       &kp D     &kp V                    &kp J      &kp F      &kp O      &kp U     &kp BSPC
+    //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
+    //│    N     │    R     │    S     │     T    │     G    │             │    Y     │   H      │     E    │     A    │    I     |
+         &kp N      &kp R      &kp S       &kp T      &kp G                   &kp Y      &kp H       &kp E      &kp A     &kp I 
+    //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
+    //│    X     │    Q     │    W     │    M     │    Z     │             │    K     │    P     │   , <    │   . >    │   / ?    |
+        &kp X      &kp Q      &kp W      &kp M      &kp Z                    &kp K     &kp P      &kp COMMA  &kp DOT     &kp FSLH
+    //╰──────────┴──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┴──────────┴──────────╯
+    //                                    MO(NAV)       LSHIFT             SPACE         MO(SYM)          
+                                          &mo NAV    &kp LSHIFT           &kp SPACE      &mo SYM       
+    //                                 ╰──────────┴──────────╯             ╰──────────┴──────────╯
+        >;
+    };
+
+
+
+    symbol_layer {
+        display-name = "Symbol";
+        bindings = <
+// -----------------------------------------------------------------------------------------
+// | 1! |  2@ |  3# |  4$ |  5% |     |  6^ |  7& |  8* |  9(  |  0)  |
+// | -_ |  =+ |  {  |  [  |  (  |     |  )  |  ]  |  }  |  /?  |  \|  |
+// | `~ |     |     |  ,< |  :  |     |  ;  |  .> | CTRL| META |      |
+//                  |-----| SFT |     | SPC |-----|
+
+
+   AS(N1)      AS(N2)       AS(N3)       AS(N4)       AS(N5)          AS(N6)        AS(N7)      AS(N8)       AS(N9)      AS(N0)
+   AS(MINUS)   AS(EQUAL)    &kp LBRC     &kp LBKT     &kp LPAR        &kp RPAR      &kp RBKT    &kp RBRC     AS(FSLH)    AS(BSLH)
+   AS(GRAVE)   &trans       &trans       AS(COMMA)    &kp COLON       &kp SEMI      AS(DOT)     &kp LCTRL    &kp RALT    &trans
+                                         &trans       &trans          &trans        &trans
+                        >;
+                    };
+
+
+    navigation_layer {
+        display-name = "Navigation";
+        bindings = <
+    //╭──────────┬──────────┬──────────┬──────────┬──────────╮             ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+    //    TAB                                          (                          )      HOME         UP        END
+        &kp TAB     &trans     &trans     &trans     &kp LPAR                &kp RPAR    &home      &kp UP     &end        &trans 
+    //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
+    //   SHIFT       CTRL       ALT        CMD          [                       ]         LEFT       DOWN      RIGHT
+      &sk LSHFT    &sk LCTRL  &sk LALT   &sk LCMD   &kp LBKT                &kp RBKT    &kp LEFT   &kp DOWN  &kp RIGHT    &trans 
+    //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
+    //                                                 {                          }     
+        &trans      &trans     &trans     &trans     &kp LBRC                &kp RBRC    &trans      &trans     &trans     &trans 
+    //╰──────────┴──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┴──────────┴──────────╯
+    //                                   SETTINGS
+                                         &to SETT     &trans                  &trans     &trans
+    //                                 ╰──────────┴──────────╯             ╰──────────┴──────────╯
+        >;
+    };
+
+
+    settings_layer {
+        display-name = "Settings";
+        bindings = <
+    //╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮             ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+    //      BT-0              BT-1             BT-2             BT-3             BT-4
+        &bt BT_SEL 0      &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                  &to BASE    &trans     &trans     &trans     &trans 
+    //├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
+           &trans            &trans           &trans           &trans           &trans                      &trans     &trans     &trans     &trans     &trans 
+    //├────────────────┼────────────────┼────────────────┼────────────────┼────────────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
+    //  BT CLEAR         BT CLEAR ALL
+        &bt BT_CLR       &bt BT_CLR_ALL       &trans           &trans           &trans                      &trans     &trans     &trans     &trans     &trans 
+    //╰────────────────┴────────────────┼────────────────┼────────────────┼────────────────┤             ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                                               &trans            &trans                     &trans     &trans 
+    //                                                   ╰────────────────┴────────────────╯             ╰──────────┴──────────╯
+        >;
+    };
+        };
+};
