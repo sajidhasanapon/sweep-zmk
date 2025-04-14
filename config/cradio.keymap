@@ -88,13 +88,13 @@
 // -----------------------------------------------------------------------------------------
 // | 1! |  2@ |  3# |  4$ |  5% |     |  6^ |  7& |  8* |  9(  |  0)  |
 // | -_ |  =+ |  {  |  [  |  (  |     |  )  |  ]  |  }  |  /?  |  \|  |
-// | `~ |     |     |  ,< |  :  |     |  ;  |  .> | CTRL| META |      |
+// | `~ |     |     |  ,< |  :  |     |  ;  |  .> | CTRL| META |  RET |
 //                  |-----| SFT |     | SPC |-----|
 
 
    AS(N1)      AS(N2)       AS(N3)       AS(N4)       AS(N5)          AS(N6)        AS(N7)      AS(N8)       AS(N9)      AS(N0)
    AS(MINUS)   AS(EQUAL)    &kp LBRC     &kp LBKT     &kp LPAR        &kp RPAR      &kp RBKT    &kp RBRC     AS(FSLH)    AS(BSLH)
-   AS(GRAVE)   &trans       &trans       AS(COMMA)    &kp COLON       &kp SEMI      AS(DOT)     &kp LCTRL    &kp RALT    &trans
+   AS(GRAVE)   &trans       &trans       AS(COMMA)    &kp COLON       &kp SEMI      AS(DOT)     &kp LCTRL    &kp RALT    &kp RET
                                          &trans       &trans          &trans        &trans
                         >;
                     };
@@ -110,8 +110,8 @@
     //   SHIFT       CTRL       ALT        CMD          [                       ]         LEFT       DOWN      RIGHT
       &sk LSHFT    &sk LCTRL  &sk LALT   &sk LCMD   &kp LBKT                &kp RBKT    &kp LEFT   &kp DOWN  &kp RIGHT    &trans 
     //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
-    //                                                 {                          }     
-        &trans      &trans     &trans     &trans     &kp LBRC                &kp RBRC    &trans      &trans     &trans     &trans 
+    //                                                 {                          }                                       RETURN
+        &trans      &trans     &trans     &trans     &kp LBRC                &kp RBRC    &trans      &trans     &trans    &kp RET 
     //╰──────────┴──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┴──────────┴──────────╯
     //                                   SETTINGS
                                          &to SETT     &trans                  &trans     &trans
