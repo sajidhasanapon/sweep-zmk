@@ -83,25 +83,28 @@
 
 
     symbol_layer {
-        display-name = "Symbol";
+        display-name = "Sym";
         bindings = <
-// -----------------------------------------------------------------------------------------
-// | 1! |  2@ |  3# |  4$ |  5% |     |  6^ |  7& |  8* |  9(  |  0)  |
-// | -_ |  =+ |  {  |  [  |  (  |     |  )  |  ]  |  }  |  /?  |  \|  |
-// | `~ |     |     |  ,< |  :  |     |  ;  |  .> | CTRL| META |  RET |
-//                  |-----| SFT |     | SPC |-----|
 
-
-   AS(N1)      AS(N2)       AS(N3)       AS(N4)       AS(N5)          AS(N6)        AS(N7)      AS(N8)       AS(N9)      AS(N0)
-   AS(MINUS)   AS(EQUAL)    &kp LBRC     &kp LBKT     &kp LPAR        &kp RPAR      &kp RBKT    &kp RBRC     AS(FSLH)    AS(BSLH)
-   AS(GRAVE)   &trans       &trans       AS(COMMA)    &kp COLON       &kp SEMI      AS(DOT)     &kp LCTRL    &kp RALT    &kp RET
-                                         &trans       &trans          &trans        &trans
-                        >;
-                    };
+    // ╭────────────┬────────────┬────────────┬────────────┬────────────╮             ╭────────────┬────────────┬────────────┬────────────┬────────────╮
+    // |     1 !    |     2 @    |     3 #    |     4 $    |     5 %    |             |     6 ^    |     7 &    |     8 *    |     9 (    |     0 )    |
+           &kp N1       &kp N2       &kp N3       &kp N4       &kp N5                     &kp N6       &kp N7        &kp N8       &kp N9       &kp N0
+    // ├────────────┼────────────┼────────────┼────────────┼────────────┤             ├────────────┼────────────┼────────────┼────────────┼────────────┤
+    // |    SHIFT   |    CTRL    |     ALT    |     CMD    |     ` ~    |             |            |            |            |            |            |
+          &sk LSHFT    &sk LCTRL    &sk LALT     &sk LCMD     &kp GRAVE                  &trans        &trans       &trans       &trans       &trans
+    // ├────────────┼────────────┼────────────┼────────────┼────────────┤             ├────────────┼────────────┼────────────┼────────────┼────────────┤
+    // |     - _    |     = +    |     {      |     [      |     (      |             |     )      |     ]      |     }      |     \ |    |     RET    |
+         &kp MINUS     &kp EQUAL    &kp LBRC     &kp LBKT     &kp LPAR                   &kp RPAR     &kp RBKT     &kp RBRC     &kp BSLH      &kp RET
+    // ├────────────┼────────────┼────────────┼────────────┼────────────┤             ├────────────┼────────────┼────────────┼────────────┼────────────┤
+    //                                           SETTINGS                                     
+                                                 &to SETT       &trans                    &trans       &trans      
+    //                                        ╰────────────┴────────────╯             ╰────────────┴────────────╯
+        >;
+    };
 
 
     navigation_layer {
-        display-name = "Navigation";
+        display-name = "Nav";
         bindings = <
     //╭──────────┬──────────┬──────────┬──────────┬──────────╮             ╭──────────┬──────────┬──────────┬──────────┬──────────╮
     //    TAB                                          (                          )      HOME         UP        END
@@ -113,15 +116,15 @@
     //                                                 {                          }                                       RETURN
         &trans      &trans     &trans     &trans     &kp LBRC                &kp RBRC    &trans      &trans     &trans    &kp RET 
     //╰──────────┴──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┴──────────┴──────────╯
-    //                                   SETTINGS
-                                         &to SETT     &trans                  &trans     &trans
+    //                                                                                  SETTINGS
+                                          &trans     &trans                   &trans    &to SETT
     //                                 ╰──────────┴──────────╯             ╰──────────┴──────────╯
         >;
     };
 
 
     settings_layer {
-        display-name = "Settings";
+        display-name = "Set";
         bindings = <
     //╭────────────────┬────────────────┬────────────────┬────────────────┬────────────────╮             ╭──────────┬──────────┬──────────┬──────────┬──────────╮
     //      BT-0              BT-1             BT-2             BT-3             BT-4
