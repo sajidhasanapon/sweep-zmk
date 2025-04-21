@@ -57,6 +57,15 @@
         };
     };
 
+    combos {
+        compatible = "zmk,combos";
+        combo_alt_bspc {
+            timeout-ms = <50>;
+            key-positions = <8 9>;
+            bindings = <&kp LA(BSPC)>;
+        };
+    };
+
     keymap {
             compatible = "zmk,keymap";
 
@@ -107,11 +116,11 @@
         display-name = "Nav";
         bindings = <
     //╭──────────┬──────────┬──────────┬──────────┬──────────╮             ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-    //    TAB                                          (                          )      HOME         UP        END
-        &kp TAB     &trans     &trans     &trans     &kp LPAR                &kp RPAR    &home      &kp UP     &end        &trans 
+    //    TAB                                          (                          )       HOME        UP        END
+        &kp TAB     &trans     &trans     &trans     &kp LPAR                &kp RPAR     &home     &kp UP      &end      &trans 
     //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
-    //   SHIFT       CTRL       ALT        CMD          [                       ]         LEFT       DOWN      RIGHT
-      &sk LSHFT    &sk LCTRL  &sk LALT   &sk LCMD   &kp LBKT                &kp RBKT    &kp LEFT   &kp DOWN  &kp RIGHT    &trans 
+    //   SHIFT       CTRL       ALT        CMD          [                       ]         LEFT       DOWN       RIGHT
+      &sk LSHFT    &sk LCTRL  &sk LALT   &sk LCMD   &kp LBKT                &kp RBKT    &kp LEFT   &kp DOWN   &kp RIGHT   &trans 
     //├──────────┼──────────┼──────────┼──────────┼──────────┤             ├──────────┼──────────┼──────────┼──────────┼──────────┤
     //                                                 {                          }                                       RETURN
         &trans      &trans     &trans     &trans     &kp LBRC                &kp RBRC    &trans      &trans     &trans    &kp RET 
