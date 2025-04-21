@@ -140,3 +140,6 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+combos:
+- p: [8, 9]
+  k: Alt+BSPC
